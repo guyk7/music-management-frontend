@@ -1,0 +1,12 @@
+image:
+  repository: guyk7/music-frontend
+  tag: latest
+
+replicaCount: 1
+
+service:
+  type: LoadBalancer
+  port: 80
+
+env:
+  BACKEND_URL: http://backend:5000

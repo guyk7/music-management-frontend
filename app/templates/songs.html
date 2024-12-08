@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Songs</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f4f4f9;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        max-width: 600px;
+        margin: 20px auto;
+      }
+      li {
+        background: #fff;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #c0392b;
+      }
+      a {
+        text-decoration: none;
+        color: #3498db;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .add-song {
+        display: block;
+        text-align: center;
+        margin: 20px auto;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Songs</h1>
+    <ul>
+      {% for song in songs %}
+      <li>
+        <span
+          >{{ song['title'] }} ({{ song['year'] }} - {{ song['album'] }})</span
+        >
+        <div class="actions">
+          <form
+            method="post"
+            action="{{ url_for('delete_song', singer_id=singer_id, song_id=song['_id']) }}"
+            style="display: inline"
+          >
+            <button type="submit">Delete Song</button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <a class="add-song" href="{{ url_for('add_song', singer_id=singer_id) }}"
+      >Add a new Song</a
+    >
+    <a class="add-song" href="{{ url_for('view_singers') }}">Back to Singers</a>
+  </body>
+</html>

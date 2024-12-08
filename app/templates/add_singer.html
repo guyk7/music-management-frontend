@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a Singer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+      h1 {
+        color: #333;
+      }
+      form {
+        max-width: 400px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #555;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add a Singer</h1>
+    <form method="post" action="{{ url_for('add_singer') }}">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="genre">Genre:</label>
+      <input type="text" id="genre" name="genre" required />
+      <button type="submit">Add Singer</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singers</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f4f4f9;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        max-width: 600px;
+        margin: 20px auto;
+      }
+      li {
+        background: #fff;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #c0392b;
+      }
+      a {
+        text-decoration: none;
+        color: #3498db;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .add-singer {
+        display: block;
+        text-align: center;
+        margin: 20px auto;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Singers</h1>
+    <ul>
+      {% for singer in singers %}
+      <li>
+        <span>{{ singer['name'] }} ({{ singer['genre'] }})</span>
+        <div class="actions">
+          <a href="{{ url_for('view_songs', singer_id=singer['_id']) }}"
+            >View Songs</a
+          >
+          <a href="{{ url_for('add_song', singer_id=singer['_id']) }}"
+            >Add Song</a
+          >
+          <form
+            method="post"
+            action="{{ url_for('delete_singer', singer_id=singer['_id']) }}"
+            style="display: inline"
+          >
+            <button type="submit">Delete Singer</button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <a class="add-singer" href="{{ url_for('add_singer') }}"
+      >Add a new Singer</a
+    >
+    <a class="add-singer" href="{{ url_for('home') }}">Back to Home</a>
+  </body>
+</html>

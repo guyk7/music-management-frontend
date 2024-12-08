@@ -1,0 +1,16 @@
+<h1>Songs</h1>
+<ul>
+  {% for song in songs %}
+  <li>
+    {{ song.title }} ({{ song.year }}) - {{ song.album }}
+    <form
+      action="/singers/{{ singer_id }}/songs/{{ song._id }}/delete"
+      method="POST"
+      style="display: inline"
+    >
+      <button type="submit">Delete Song</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+<a href="/singers">Back to Singers</a>
